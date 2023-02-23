@@ -68,9 +68,23 @@ public class StudentRepository {
     }
 
     public void removeAll(){
-        dbpair.clear();
-        dbstudent.clear();
+
+        for(String teacher : dbTeacher.keySet()){
+
+            if(dbpair.containsKey(teacher)){
+
+                List<String> students = dbpair.get(teacher);
+                dbpair.remove(teacher);
+                for(String student : students){
+                    dbstudent.remove(student);
+                }
+
+            }
+
+        }
+
         dbTeacher.clear();
+
     }
 
 }
